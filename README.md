@@ -2,7 +2,11 @@
 
 Personal portfolio site for **Umer Sheraz** — technical leader profile with skills, featured work ([UmerPay](https://github.com/MuhammadUmerSheraz/UmerPay)), and contact links.
 
-**Live repository:** [github.com/MuhammadUmerSheraz/Portfolio](https://github.com/MuhammadUmerSheraz/Portfolio)
+**Repository:** [github.com/MuhammadUmerSheraz/Portfolio](https://github.com/MuhammadUmerSheraz/Portfolio)
+
+**Production (live):** [https://umer-sheraz-portfolio.vercel.app](https://umer-sheraz-portfolio.vercel.app/)
+
+**GitHub *About* website link:** set it to the same URL above (or your custom domain later): repo → **⚙️** next to *About* → **Website** → paste the link → Save. GitHub does not read this from the repo files automatically.
 
 ## Stack
 
@@ -37,7 +41,15 @@ npm run start
 
 ## SEO & canonical URL
 
-Set **`NEXT_PUBLIC_SITE_URL`** to your production origin (no trailing slash), e.g. `https://your-name.vercel.app`. On Vercel, if you omit it, **`VERCEL_URL`** is used so sitemap and structured data stay correct.
+Set **`NEXT_PUBLIC_SITE_URL`** in **Vercel → Project → Settings → Environment Variables** (Production) to your public origin **with no trailing slash**:
+
+`https://umer-sheraz-portfolio.vercel.app`
+
+Then **redeploy**. That keeps Open Graph, `sitemap.xml`, and JSON-LD aligned with [the live site](https://umer-sheraz-portfolio.vercel.app/). If you later attach a **custom domain**, change this variable to that domain instead.
+
+This repo reads the value in [`src/lib/site-url.ts`](src/lib/site-url.ts). If the variable is missing, the build falls back to **`VERCEL_URL`** (usually fine, but can differ from your preferred hostname).
+
+Copy [`.env.example`](.env.example) to `.env.local` for local checks; production values belong in the host’s env UI.
 
 Tune **`seoDescription`** and **`seoKeywords`** in [`src/content/site.ts`](src/content/site.ts). Validate with [Google Rich Results Test](https://search.google.com/test/rich-results) and [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/) after deploy.
 

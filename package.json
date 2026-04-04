@@ -2,6 +2,11 @@
   "name": "personal-portfolio",
   "version": "1.0.0",
   "private": true,
+  "homepage": "https://umer-sheraz-portfolio.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MuhammadUmerSheraz/Portfolio.git"
+  },
   "scripts": {
     "dev": "next dev -p 3020",
     "build": "next build",
