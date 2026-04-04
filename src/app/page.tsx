@@ -32,9 +32,9 @@ export default function HomePage() {
     <>
       <Nav />
 
-      <main className="overflow-hidden">
+      <main className="min-h-dvh min-w-0 overflow-x-hidden">
         {/* Hero */}
-        <section className="relative px-5 pb-28 pt-28 md:px-8 md:pb-36 md:pt-36">
+        <section className="relative px-4 pb-24 pt-[calc(5.5rem+env(safe-area-inset-top))] sm:px-5 sm:pb-28 sm:pt-28 md:px-8 md:pb-36 md:pt-36">
           <div
             className="pointer-events-none absolute inset-0 bg-mesh-hero opacity-90 dark:hidden"
             aria-hidden
@@ -55,7 +55,7 @@ export default function HomePage() {
           <div className="relative mx-auto grid max-w-6xl gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-16">
             <div>
               <SectionLabel>Portfolio</SectionLabel>
-              <h1 className="animate-fade-up mt-5 font-display text-display-sm font-medium text-midnight opacity-0 [animation-delay:0.06s] dark:text-cream md:text-display md:text-display-lg">
+              <h1 className="animate-fade-up mt-5 font-display text-[1.65rem] font-medium leading-tight text-midnight opacity-0 [animation-delay:0.06s] dark:text-cream sm:text-[1.9rem] sm:leading-snug md:text-display md:text-display-lg md:leading-[1.05]">
                 <span className="text-balance">{site.role}</span>
                 <span className="mt-3 block font-normal text-midnight-muted dark:text-cream/70 md:mt-4">
                   Crafting dependable software from mobile to cloud.
@@ -74,10 +74,10 @@ export default function HomePage() {
                   </li>
                 ))}
               </ul>
-              <div className="animate-fade-up mt-12 flex flex-wrap gap-3 opacity-0 [animation-delay:0.3s]">
+              <div className="animate-fade-up mt-12 flex w-full flex-col gap-3 opacity-0 [animation-delay:0.3s] min-[400px]:flex-row min-[400px]:flex-wrap sm:w-auto">
                 <Link
                   href="#work"
-                  className="inline-flex items-center justify-center rounded-full bg-midnight px-8 py-3.5 text-sm font-semibold text-cream shadow-card transition hover:bg-sea hover:shadow-lift dark:bg-cream dark:text-midnight dark:shadow-card-dark dark:hover:bg-accent dark:hover:text-midnight dark:hover:shadow-lift-dark"
+                  className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-midnight px-8 py-3 text-sm font-semibold text-cream shadow-card transition hover:bg-sea hover:shadow-lift active:scale-[0.99] dark:bg-cream dark:text-midnight dark:shadow-card-dark dark:hover:bg-accent dark:hover:text-midnight dark:hover:shadow-lift-dark min-[400px]:w-auto"
                 >
                   Featured work
                 </Link>
@@ -85,7 +85,7 @@ export default function HomePage() {
                   href={site.links.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center rounded-full border border-line bg-cream/80 px-8 py-3.5 text-sm font-semibold text-midnight shadow-sm backdrop-blur-sm transition hover:border-accent/40 hover:shadow-soft dark:border-white/15 dark:bg-white/5 dark:text-cream dark:hover:border-accent/40 dark:hover:bg-white/10"
+                  className="inline-flex min-h-11 w-full items-center justify-center rounded-full border border-line bg-cream/80 px-8 py-3 text-sm font-semibold text-midnight shadow-sm backdrop-blur-sm transition hover:border-accent/40 hover:shadow-soft active:scale-[0.99] dark:border-white/15 dark:bg-white/5 dark:text-cream dark:hover:border-accent/40 dark:hover:bg-white/10 min-[400px]:w-auto"
                 >
                   LinkedIn
                 </Link>
@@ -113,7 +113,7 @@ export default function HomePage() {
                       aria-hidden
                     />
                   </div>
-                  <div className="p-8 md:p-10">
+                  <div className="p-5 sm:p-8 md:p-10">
                   <p className="font-display text-lg italic text-midnight-muted dark:text-cream/50">&ldquo;</p>
                   <p className="mt-2 font-display text-xl font-medium leading-snug text-midnight dark:text-cream md:text-2xl">
                     Clear architecture, kind code reviews, and shipping without drama.
@@ -136,7 +136,7 @@ export default function HomePage() {
         {/* Skills */}
         <section
           id="skills"
-          className="scroll-mt-28 border-t border-line bg-cream-deep/80 px-5 py-24 dark:border-white/10 dark:bg-midnight-soft/35 md:px-8 md:py-32"
+          className="scroll-mt-24 border-t border-line bg-cream-deep/80 px-4 py-20 dark:border-white/10 dark:bg-midnight-soft/35 sm:scroll-mt-28 sm:px-5 sm:py-24 md:px-8 md:py-32"
         >
           <div className="mx-auto max-w-6xl">
             <SectionLabel>Expertise</SectionLabel>
@@ -151,7 +151,7 @@ export default function HomePage() {
               {site.skillCategories.map((cat, i) => (
                 <article
                   key={cat.title}
-                  className="group relative overflow-hidden rounded-2xl border border-line bg-cream/90 p-7 shadow-card transition duration-300 hover:-translate-y-0.5 hover:border-accent/25 hover:shadow-lift dark:border-white/10 dark:bg-midnight-soft/90 dark:shadow-card-dark dark:hover:border-accent/35 dark:hover:shadow-lift-dark"
+                  className="group relative overflow-hidden rounded-2xl border border-line bg-cream/90 p-5 shadow-card transition duration-300 hover:-translate-y-0.5 hover:border-accent/25 hover:shadow-lift dark:border-white/10 dark:bg-midnight-soft/90 dark:shadow-card-dark dark:hover:border-accent/35 dark:hover:shadow-lift-dark sm:p-6 md:p-7"
                 >
                   <div
                     className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent opacity-0 transition group-hover:opacity-100"
@@ -178,7 +178,7 @@ export default function HomePage() {
         </section>
 
         {/* Featured work */}
-        <section id="work" className="scroll-mt-28 px-5 py-24 md:px-8 md:py-32">
+        <section id="work" className="scroll-mt-24 px-4 py-20 sm:scroll-mt-28 sm:px-5 sm:py-24 md:px-8 md:py-32">
           <div className="mx-auto max-w-6xl">
             <SectionLabel>Case study</SectionLabel>
             <h2 className="mt-4 font-display text-display-sm font-medium text-midnight dark:text-cream md:text-display">
@@ -189,7 +189,7 @@ export default function HomePage() {
             </p>
 
             <article className="mt-14 overflow-hidden rounded-[1.75rem] border border-line bg-cream shadow-lift dark:border-white/10 dark:bg-midnight-soft/95 dark:shadow-lift-dark md:grid md:grid-cols-[1.1fr_0.9fr]">
-              <div className="flex flex-col justify-center p-8 md:p-12 lg:p-14">
+              <div className="flex flex-col justify-center p-5 sm:p-8 md:p-12 lg:p-14">
                 <h3 className="font-display text-3xl font-semibold tracking-tight text-midnight dark:text-cream md:text-4xl">
                   {site.featuredProject.name}
                 </h3>
@@ -206,12 +206,12 @@ export default function HomePage() {
                     </span>
                   ))}
                 </div>
-                <div className="mt-9 flex flex-wrap gap-3">
+                <div className="mt-9 flex flex-col gap-3 min-[400px]:flex-row min-[400px]:flex-wrap">
                   <Link
                     href={site.links.umerpayLive}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex rounded-full bg-sea px-7 py-3 text-sm font-semibold text-cream shadow-sm transition hover:bg-sea-light"
+                    className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-sea px-7 py-3 text-sm font-semibold text-cream shadow-sm transition hover:bg-sea-light active:scale-[0.99] min-[400px]:w-auto"
                   >
                     Live demo
                   </Link>
@@ -219,7 +219,7 @@ export default function HomePage() {
                     href={site.links.umerpayRepo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex rounded-full border border-midnight/15 bg-transparent px-7 py-3 text-sm font-semibold text-midnight transition hover:border-midnight hover:bg-midnight/[0.03] dark:border-white/20 dark:text-cream dark:hover:border-cream/40 dark:hover:bg-white/5"
+                    className="inline-flex min-h-11 w-full items-center justify-center rounded-full border border-midnight/15 bg-transparent px-7 py-3 text-sm font-semibold text-midnight transition hover:border-midnight hover:bg-midnight/[0.03] active:scale-[0.99] dark:border-white/20 dark:text-cream dark:hover:border-cream/40 dark:hover:bg-white/5 min-[400px]:w-auto"
                   >
                     Source code
                   </Link>
@@ -254,10 +254,10 @@ export default function HomePage() {
         {/* Contact */}
         <section
           id="contact"
-          className="scroll-mt-28 border-t border-line bg-mesh-footer px-5 py-24 dark:border-white/10 dark:bg-mesh-footer-dark md:px-8 md:py-28"
+          className="scroll-mt-24 border-t border-line bg-mesh-footer px-4 py-20 dark:border-white/10 dark:bg-mesh-footer-dark sm:scroll-mt-28 sm:px-5 sm:py-24 md:px-8 md:py-28"
         >
           <div className="mx-auto max-w-6xl">
-            <div className="overflow-hidden rounded-[1.75rem] border border-line bg-cream/90 p-8 shadow-soft backdrop-blur-md dark:border-white/10 dark:bg-midnight-soft/90 dark:shadow-soft-dark md:p-12 lg:p-14">
+            <div className="overflow-hidden rounded-[1.75rem] border border-line bg-cream/90 p-5 shadow-soft backdrop-blur-md dark:border-white/10 dark:bg-midnight-soft/90 dark:shadow-soft-dark sm:p-8 md:p-12 lg:p-14">
               <div className="md:flex md:items-end md:justify-between md:gap-16">
                 <div className="max-w-xl">
                   <SectionLabel>Contact</SectionLabel>
@@ -272,7 +272,7 @@ export default function HomePage() {
                 <div className="mt-10 flex flex-col gap-4 md:mt-0 md:text-right">
                   <a
                     href={`mailto:${site.email}`}
-                    className="text-lg font-semibold text-midnight underline decoration-accent/50 decoration-2 underline-offset-[6px] transition hover:decoration-accent dark:text-cream"
+                    className="break-all text-base font-semibold text-midnight underline decoration-accent/50 decoration-2 underline-offset-[6px] transition hover:decoration-accent dark:text-cream sm:text-lg"
                   >
                     {site.email}
                   </a>
@@ -288,7 +288,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <footer className="bg-midnight px-5 py-12 md:px-8">
+        <footer className="bg-midnight px-4 py-10 pb-[max(2.5rem,env(safe-area-inset-bottom))] sm:px-5 sm:py-12 md:px-8">
           <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 text-sm text-cream/55 md:flex-row">
             <p className="text-center md:text-left">
               © {new Date().getFullYear()} {site.displayName}. Crafted with Next.js.

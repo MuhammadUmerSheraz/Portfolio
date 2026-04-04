@@ -49,7 +49,7 @@ export function ThemeToggle() {
       onClick={toggle}
       aria-label={label}
       title={label}
-      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[rgba(12,18,34,0.1)] bg-cream/90 text-midnight shadow-sm transition hover:border-accent/40 hover:text-sea dark:border-white/10 dark:bg-white/5 dark:text-cream dark:hover:border-accent/50 dark:hover:text-accent md:h-10 md:w-10"
+      className="inline-flex h-11 w-11 min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-[rgba(12,18,34,0.1)] bg-cream/90 text-midnight shadow-sm transition hover:border-accent/40 hover:text-sea dark:border-white/10 dark:bg-white/5 dark:text-cream dark:hover:border-accent/50 dark:hover:text-accent md:h-10 md:w-10 md:min-h-0 md:min-w-0"
     >
       {!mounted || mode === "dark" ? (
         <SunIcon className="h-[18px] w-[18px]" />

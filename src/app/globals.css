@@ -17,6 +17,10 @@ html {
 body {
   @apply bg-cream text-midnight antialiased transition-colors duration-300 dark:bg-void dark:text-cream;
   background-image: var(--grain);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  padding-bottom: env(safe-area-inset-bottom);
+  -webkit-tap-highlight-color: rgba(196, 165, 116, 0.2);
 }
 
 ::selection {
