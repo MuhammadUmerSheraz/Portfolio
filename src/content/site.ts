@@ -36,6 +36,16 @@ export const site = {
       ],
     },
     {
+      title: "Team & project management",
+      items: [
+        "End-to-end delivery: backlogs, sprints, milestones, and releases",
+        "Scope, risk, dependencies, and stakeholder communication",
+        "Capacity planning, prioritisation, and balancing workloads across engineers",
+        "Transparent status — blockers, decisions, and documentation people can trust",
+        "Comfortable with Jira, Confluence, and similar tools; process should fit the team",
+      ],
+    },
+    {
       title: "Mobile",
       items: ["Android (Kotlin)", "iOS (Swift)", "Flutter", "React Native"],
     },
