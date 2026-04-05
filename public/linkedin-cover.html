@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>LinkedIn cover — Umer Sheraz (export 1584×396)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Figtree:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        min-height: 100vh;
+        background: #1a1a1a;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        padding: 1rem;
+        font-family: Figtree, system-ui, sans-serif;
+      }
+      /* LinkedIn recommended cover: 1584 × 396 */
+      .cover {
+        width: 1584px;
+        height: 396px;
+        position: relative;
+        overflow: hidden;
+        background: #070b12;
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+      }
+      .mesh {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(ellipse 85% 70% at 78% -15%, rgba(196, 165, 116, 0.22), transparent 55%),
+          radial-gradient(ellipse 55% 50% at 0% 55%, rgba(30, 95, 95, 0.2), transparent 52%),
+          radial-gradient(ellipse 40% 60% at 100% 100%, rgba(45, 122, 122, 0.12), transparent 45%);
+        pointer-events: none;
+      }
+      .grid {
+        position: absolute;
+        inset: 0;
+        opacity: 0.06;
+        background-image:
+          linear-gradient(rgba(255, 253, 249, 0.4) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 253, 249, 0.4) 1px, transparent 1px);
+        background-size: 48px 48px;
+        pointer-events: none;
+      }
+      .arc {
+        position: absolute;
+        right: -8%;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 520px;
+        height: 520px;
+        border-radius: 50%;
+        border: 1px solid rgba(196, 165, 116, 0.18);
+        pointer-events: none;
+      }
+      .arc2 {
+        right: 2%;
+        width: 380px;
+        height: 380px;
+        border-color: rgba(30, 95, 95, 0.25);
+      }
+      .content {
+        position: relative;
+        z-index: 1;
+        height: 100%;
+        padding: 48px 56px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        max-width: 920px;
+      }
+      .name {
+        font-family: Fraunces, Georgia, serif;
+        font-size: 3.35rem;
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        color: #fffdf9;
+        line-height: 1.05;
+      }
+      .name span {
+        color: #c4a574;
+      }
+      .role {
+        margin-top: 14px;
+        font-family: Figtree, sans-serif;
+        font-size: 1.35rem;
+        font-weight: 600;
+        color: #2d7a7a;
+        letter-spacing: 0.02em;
+      }
+      .tagline {
+        margin-top: 18px;
+        font-size: 1.05rem;
+        font-weight: 500;
+        line-height: 1.5;
+        color: rgba(255, 253, 249, 0.72);
+        max-width: 38rem;
+      }
+      .pills {
+        margin-top: 28px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .pill {
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        padding: 8px 14px;
+        border-radius: 999px;
+        border: 1px solid rgba(196, 165, 116, 0.35);
+        color: rgba(255, 253, 249, 0.88);
+        background: rgba(12, 18, 34, 0.55);
+      }
+      .pill.sea {
+        border-color: rgba(45, 122, 122, 0.45);
+        color: #b8e0e0;
+      }
+      .hint {
+        color: #888;
+        font-size: 0.85rem;
+        max-width: 1584px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cover" id="cover">
+      <div class="mesh" aria-hidden="true"></div>
+      <div class="grid" aria-hidden="true"></div>
+      <div class="arc" aria-hidden="true"></div>
+      <div class="arc arc2" aria-hidden="true"></div>
+      <div class="content">
+        <h1 class="name">Umer Sheraz<span>.</span></h1>
+        <p class="role">Technical leader · Co-founder &amp; CTO scale</p>
+        <p class="tagline">
+          Full stack delivery — mobile, web, APIs, and cloud. AWS · Django · Next.js · DevOps · Gulf-region
+          product experience.
+        </p>
+        <div class="pills">
+          <span class="pill sea">Next.js</span>
+          <span class="pill">AWS</span>
+          <span class="pill sea">Django</span>
+          <span class="pill">Flutter &amp; native</span>
+          <span class="pill sea">Kubernetes</span>
+          <span class="pill">PostgreSQL</span>
+          <span class="pill sea">Open source</span>
+        </div>
+      </div>
+    </div>
+    <p class="hint">
+      Export: use browser zoom 100% and screenshot only the dark banner above, or run
+      <code>npm run export-linkedin-cover</code> from the project root to write
+      <code>public/linkedin-cover.png</code>.
+    </p>
+  </body>
+</html>

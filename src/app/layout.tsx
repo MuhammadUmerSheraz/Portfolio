@@ -65,11 +65,20 @@ export const metadata: Metadata = {
     siteName: `${site.displayName} — Portfolio`,
     title: `${site.displayName} — ${site.role}`,
     description: site.seoDescription,
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: `${site.displayName} — ${site.role}`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${site.displayName} — ${site.role}`,
     description: site.seoDescription,
+    images: ["/opengraph-image"],
   },
   appleWebApp: {
     capable: true,

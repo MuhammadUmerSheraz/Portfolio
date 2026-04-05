@@ -5,13 +5,12 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: `${site.displayName} — Portfolio`,
     short_name: site.displayName,
-    description: site.tagline,
+    description: site.seoDescription,
     start_url: "/",
-    display: "standalone",
-    orientation: "portrait-primary",
+    display: "browser",
     background_color: "#070b12",
     theme_color: "#070b12",
-    categories: ["business", "productivity"],
+    lang: "en",
     icons: [
       {
         src: "/icon-192.png",
@@ -24,12 +23,6 @@ export default function manifest(): MetadataRoute.Manifest {
         sizes: "512x512",
         type: "image/png",
         purpose: "any",
-      },
-      {
-        src: "/icon-512.png",
-        sizes: "512x512",
-        type: "image/png",
-        purpose: "maskable",
       },
     ],
   };

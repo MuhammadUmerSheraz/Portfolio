@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { site } from "@/content/site";
+import { FeaturedWorkSidePanel } from "@/components/FeaturedWorkSidePanel";
 import { Nav } from "@/components/Nav";
 
 function CheckIcon({ className }: { className?: string }) {
@@ -180,74 +181,83 @@ export default function HomePage() {
         {/* Featured work */}
         <section id="work" className="scroll-mt-24 px-4 py-20 sm:scroll-mt-28 sm:px-5 sm:py-24 md:px-8 md:py-32">
           <div className="mx-auto max-w-6xl">
-            <SectionLabel>Case study</SectionLabel>
+            <SectionLabel>More detail</SectionLabel>
             <h2 className="mt-4 font-display text-display-sm font-medium text-midnight dark:text-cream md:text-display">
-              Featured project
+              Featured work
             </h2>
             <p className="mt-5 max-w-2xl text-midnight-muted dark:text-cream/70 md:text-lg">
-              A live product you can explore — real flows, real persistence, open source.
+              Short previews below — use Explore more to open the full write-up: stack, delivery, and how I worked with the team.
             </p>
 
-            <article className="mt-14 overflow-hidden rounded-[1.75rem] border border-line bg-cream shadow-lift dark:border-white/10 dark:bg-midnight-soft/95 dark:shadow-lift-dark md:grid md:grid-cols-[1.1fr_0.9fr]">
-              <div className="flex flex-col justify-center p-5 sm:p-8 md:p-12 lg:p-14">
-                <h3 className="font-display text-3xl font-semibold tracking-tight text-midnight dark:text-cream md:text-4xl">
-                  {site.featuredProject.name}
-                </h3>
-                <p className="mt-5 leading-[1.75] text-midnight-muted dark:text-cream/75">
-                  {site.featuredProject.description}
-                </p>
-                <div className="mt-7 flex flex-wrap gap-2">
-                  {site.featuredProject.stack.map((s) => (
-                    <span
-                      key={s}
-                      className="rounded-full border border-line bg-pearl/80 px-3.5 py-1.5 text-xs font-medium text-midnight dark:border-white/10 dark:bg-white/5 dark:text-cream/90"
-                    >
-                      {s}
-                    </span>
-                  ))}
-                </div>
-                <div className="mt-9 flex flex-col gap-3 min-[400px]:flex-row min-[400px]:flex-wrap">
-                  <Link
-                    href={site.links.umerpayLive}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-sea px-7 py-3 text-sm font-semibold text-cream shadow-sm transition hover:bg-sea-light active:scale-[0.99] min-[400px]:w-auto"
-                  >
-                    Live demo
-                  </Link>
-                  <Link
-                    href={site.links.umerpayRepo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex min-h-11 w-full items-center justify-center rounded-full border border-midnight/15 bg-transparent px-7 py-3 text-sm font-semibold text-midnight transition hover:border-midnight hover:bg-midnight/[0.03] active:scale-[0.99] dark:border-white/20 dark:text-cream dark:hover:border-cream/40 dark:hover:bg-white/5 min-[400px]:w-auto"
-                  >
-                    Source code
-                  </Link>
-                </div>
-              </div>
-              <div className="relative min-h-[280px] overflow-hidden border-t border-line bg-midnight-soft dark:border-white/10 dark:bg-[#050810] md:border-l md:border-t-0 md:min-h-[360px]">
-                <div
-                  className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(196,165,116,0.15),transparent_50%),radial-gradient(ellipse_at_80%_80%,rgba(45,122,122,0.2),transparent_45%)]"
-                  aria-hidden
-                />
-                <div
-                  className="absolute inset-0 opacity-[0.07] dark:opacity-[0.12]"
-                  style={{
-                    backgroundImage: `linear-gradient(rgba(255,253,249,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,253,249,0.5) 1px, transparent 1px)`,
-                    backgroundSize: "32px 32px",
-                  }}
-                  aria-hidden
-                />
-                <div className="relative flex h-full flex-col items-center justify-center p-10 text-center">
-                  <span className="font-display text-7xl font-light tracking-tight text-cream/15 md:text-8xl dark:text-cream/10">
-                    UP
-                  </span>
-                  <p className="mt-6 max-w-[14rem] text-sm leading-relaxed text-cream/55 dark:text-cream/50">
-                    Banking UI demo · passkeys · transfers · statements · PWA
-                  </p>
-                </div>
-              </div>
-            </article>
+            <div className="mt-14 flex flex-col gap-14">
+              {site.featuredProjects.map((project) => {
+                const showVisualPanel = project.showVisualPanel !== false;
+                const stackLimit = project.homeStackLimit ?? 6;
+                const homeStack = project.stack.slice(0, stackLimit);
+                const moreStack = project.stack.length - homeStack.length;
+                return (
+                <article
+                  key={project.slug}
+                  className={`overflow-hidden rounded-[1.75rem] border border-line bg-cream shadow-lift dark:border-white/10 dark:bg-midnight-soft/95 dark:shadow-lift-dark ${
+                    showVisualPanel ? "md:grid md:grid-cols-[1.1fr_0.9fr]" : ""
+                  }`}
+                >
+                  <div className="flex flex-col justify-center p-5 sm:p-8 md:p-12 lg:p-14">
+                    <h3 className="font-display text-3xl font-semibold tracking-tight text-midnight dark:text-cream md:text-4xl">
+                      {project.name}
+                    </h3>
+                    <p className="mt-5 max-w-2xl text-[1.05rem] leading-relaxed text-midnight-muted dark:text-cream/75 md:text-base">
+                      {project.summary}
+                    </p>
+                    <div className="mt-7 flex flex-wrap gap-2">
+                      {homeStack.map((s) => (
+                        <span
+                          key={s}
+                          className="rounded-full border border-line bg-pearl/80 px-3.5 py-1.5 text-xs font-medium text-midnight dark:border-white/10 dark:bg-white/5 dark:text-cream/90"
+                        >
+                          {s}
+                        </span>
+                      ))}
+                      {moreStack > 0 ? (
+                        <span className="rounded-full border border-dashed border-line px-3.5 py-1.5 text-xs font-medium text-midnight-muted dark:border-white/20 dark:text-cream/50">
+                          +{moreStack} in full detail
+                        </span>
+                      ) : null}
+                    </div>
+                    <div className="mt-9 flex flex-col gap-3 min-[400px]:flex-row min-[400px]:flex-wrap">
+                      <Link
+                        href={`/work/${project.slug}`}
+                        className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-midnight px-7 py-3 text-sm font-semibold text-cream shadow-sm transition hover:bg-sea active:scale-[0.99] dark:bg-cream dark:text-midnight dark:hover:bg-accent dark:hover:text-midnight min-[400px]:w-auto"
+                      >
+                        Explore more
+                      </Link>
+                      {project.primaryCta ? (
+                        <Link
+                          href={project.primaryCta.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-sea px-7 py-3 text-sm font-semibold text-cream shadow-sm transition hover:bg-sea-light active:scale-[0.99] min-[400px]:w-auto"
+                        >
+                          {project.primaryCta.label}
+                        </Link>
+                      ) : null}
+                      {project.secondaryCta ? (
+                        <Link
+                          href={project.secondaryCta.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex min-h-11 w-full items-center justify-center rounded-full border border-midnight/15 bg-transparent px-7 py-3 text-sm font-semibold text-midnight transition hover:border-midnight hover:bg-midnight/[0.03] active:scale-[0.99] dark:border-white/20 dark:text-cream dark:hover:border-cream/40 dark:hover:bg-white/5 min-[400px]:w-auto"
+                        >
+                          {project.secondaryCta.label}
+                        </Link>
+                      ) : null}
+                    </div>
+                  </div>
+                  {showVisualPanel ? <FeaturedWorkSidePanel project={project} /> : null}
+                </article>
+                );
+              })}
+            </div>
           </div>
         </section>
 
