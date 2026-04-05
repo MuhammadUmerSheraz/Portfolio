@@ -5,13 +5,16 @@ export const site = {
   /** Optional full legal name for structured data / résumé only — not used on the landing page. */
   legalName: "Muhammad Umer Sheraz",
   role: "Technical leader",
+  /** Second line under the hero headline (h1). */
+  heroSubtitle: "All-round full stack — mobile, web, backend, and cloud.",
   tagline:
-    "I ship products end-to-end — from mobile clients and APIs to cloud infrastructure, pipelines, and production operations.",
+    "I ship products end-to-end — mobile apps, websites, and backend services — plus the cloud infrastructure, pipelines, and production operations that keep everything running.",
   /** ~150–160 characters for Google snippets; tune for your positioning. */
   seoDescription:
-    "Umer Sheraz — technical leader. Mobile (Flutter, RN, native), React/Next/Vue, PHP/Laravel/CodeIgniter, Node/NestJS, Python, AWS (Route 53, S3, Beanstalk, ECS/EKS), K8s, Docker & CI/CD.",
+    "Umer Sheraz — all-round technical leader (full stack). Mobile (Flutter, RN, native), React/Next/Vue, PHP/Laravel/CodeIgniter, Node/NestJS, Python, AWS (Route 53, S3, Beanstalk, ECS/EKS), K8s, Docker & CI/CD.",
   seoKeywords: [
     "Umer Sheraz",
+    "all-round developer",
     "technical leader",
     "technical lead",
     "software architect",

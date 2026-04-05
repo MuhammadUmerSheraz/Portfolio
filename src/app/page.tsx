@@ -58,7 +58,7 @@ export default function HomePage() {
               <h1 className="animate-fade-up mt-5 font-display text-[1.65rem] font-medium leading-tight text-midnight opacity-0 [animation-delay:0.06s] dark:text-cream sm:text-[1.9rem] sm:leading-snug md:text-display md:text-display-lg md:leading-[1.05]">
                 <span className="text-balance">{site.role}</span>
                 <span className="mt-3 block font-normal text-midnight-muted dark:text-cream/70 md:mt-4">
-                  Crafting dependable software from mobile to cloud.
+                  {site.heroSubtitle}
                 </span>
               </h1>
               <p className="animate-fade-up mt-8 max-w-xl text-[1.05rem] leading-[1.7] text-midnight-muted opacity-0 [animation-delay:0.14s] dark:text-cream/75 md:text-lg">
@@ -93,20 +93,20 @@ export default function HomePage() {
             </div>
 
             <div className="animate-fade-up relative opacity-0 [animation-delay:0.18s] lg:justify-self-end">
-              <div className="relative mx-auto max-w-md lg:max-w-none">
+              <div className="relative mx-auto max-w-sm lg:max-w-none">
                 <div
                   className="absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-accent/30 via-sea/15 to-transparent opacity-80 blur-xl dark:from-accent/20 dark:via-sea/25"
                   aria-hidden
                 />
                 <div className="relative overflow-hidden rounded-[1.75rem] border border-line bg-card-shine shadow-lift backdrop-blur-sm dark:border-white/10 dark:bg-card-shine-dark dark:shadow-lift-dark">
-                  <div className="relative -mx-px -mt-px aspect-[4/5] max-h-[min(420px,58vh)] min-h-[260px] w-[calc(100%+2px)] sm:aspect-[3/4] sm:max-h-[440px]">
+                  <div className="relative -mx-px -mt-px aspect-[4/5] max-h-[min(300px,42vh)] min-h-[200px] w-[calc(100%+2px)] sm:aspect-[3/4] sm:max-h-[340px] lg:max-h-[320px]">
                     <Image
                       src={site.photo.src}
                       alt={site.photo.alt}
                       fill
                       priority
-                      className="object-cover object-[50%_18%]"
-                      sizes="(max-width: 1024px) 100vw, min(440px, 40vw)"
+                      className="object-cover object-[50%_22%]"
+                      sizes="(max-width: 1024px) 100vw, min(320px, 32vw)"
                     />
                     <div
                       className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-midnight/25 to-transparent dark:from-void/50"
