@@ -6,20 +6,20 @@ import { site } from "@/content/site";
 export const ogImageSize = { width: 1200, height: 630 };
 export const ogImageContentType = "image/png";
 
-function guessMime(filename: string): string {
-  const lower = filename.toLowerCase();
-  if (lower.endsWith(".jpg") || lower.endsWith(".jpeg")) return "image/jpeg";
-  if (lower.endsWith(".webp")) return "image/webp";
-  return "image/png";
+/** Node Buffer → ArrayBuffer slice (Satori / @vercel/og renders this reliably; huge data: URLs often draw blank). */
+function bufferToArrayBuffer(buf: Buffer): ArrayBuffer {
+  const sliced = buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength);
+  return sliced as ArrayBuffer;
 }
 
-/** Loads `public` headshot for OG generation (Node runtime only). */
-export async function getProfilePhotoDataUri(): Promise<string | null> {
+/** Loads `public` headshot bytes for OG generation (commit this file so Vercel builds include it). */
+export async function getProfilePhotoArrayBuffer(): Promise<ArrayBuffer | null> {
   const rel = site.photo.src.replace(/^\//, "");
   const filePath = path.join(process.cwd(), "public", rel);
   try {
     const buf = await readFile(filePath);
-    return `data:${guessMime(rel)};base64,${buf.toString("base64")}`;
+    if (buf.length === 0) return null;
+    return bufferToArrayBuffer(buf);
   } catch {
     return null;
   }
@@ -39,7 +39,7 @@ function initials(): string {
 
 /** 1200×630 card: photo (or initials) + name / role / SEO blurb — used for WhatsApp, LinkedIn, X, iMessage. */
 export async function createPortfolioShareImageResponse() {
-  const photo = await getProfilePhotoDataUri();
+  const photoBytes = await getProfilePhotoArrayBuffer();
   const blurb =
     site.seoDescription.length > 200 ? `${site.seoDescription.slice(0, 197)}…` : site.seoDescription;
 
@@ -65,13 +65,16 @@ export async function createPortfolioShareImageResponse() {
             padding: 48,
           }}
         >
-          {photo ? (
+          {photoBytes ? (
             <img
-              src={photo}
+              // @vercel/og + Satori accept ArrayBuffer for embedded images; DOM types expect string.
+              src={photoBytes as unknown as string}
               alt=""
               width={336}
               height={336}
               style={{
+                width: 336,
+                height: 336,
                 borderRadius: 32,
                 objectFit: "cover",
                 border: "4px solid rgba(196, 165, 116, 0.5)",
