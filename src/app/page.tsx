@@ -77,10 +77,10 @@ export default function HomePage() {
               </ul>
               <div className="animate-fade-up mt-12 flex w-full flex-col gap-3 opacity-0 [animation-delay:0.3s] min-[400px]:flex-row min-[400px]:flex-wrap sm:w-auto">
                 <Link
-                  href="#work"
+                  href="#projects"
                   className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-midnight px-8 py-3 text-sm font-semibold text-cream shadow-card transition hover:bg-sea hover:shadow-lift active:scale-[0.99] dark:bg-cream dark:text-midnight dark:shadow-card-dark dark:hover:bg-accent dark:hover:text-midnight dark:hover:shadow-lift-dark min-[400px]:w-auto"
                 >
-                  Featured work
+                  Recent projects
                 </Link>
                 <Link
                   href={site.links.linkedin}
@@ -178,12 +178,78 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Featured work */}
-        <section id="work" className="scroll-mt-24 px-4 py-20 sm:scroll-mt-28 sm:px-5 sm:py-24 md:px-8 md:py-32">
+        {/* Work experience */}
+        <section
+          id="experience"
+          className="scroll-mt-24 border-t border-line px-4 py-20 dark:border-white/10 sm:scroll-mt-28 sm:px-5 sm:py-24 md:px-8 md:py-32"
+        >
           <div className="mx-auto max-w-6xl">
-            <SectionLabel>More detail</SectionLabel>
+            <SectionLabel>Career</SectionLabel>
             <h2 className="mt-4 font-display text-display-sm font-medium text-midnight dark:text-cream md:text-display">
-              Featured work
+              Work experience
+            </h2>
+            <p className="mt-5 max-w-2xl text-midnight-muted dark:text-cream/70 md:text-lg">
+              Roles where I led delivery, shaped architecture, and grew teams — aligned with the same stack you see in the projects below.
+            </p>
+
+            <ol className="relative mt-14 space-y-12 border-l-2 border-sea/30 pl-12 dark:border-accent/35 sm:pl-16">
+              {site.experience.map((job) => {
+                const meta = [job.period, job.mode, job.location].filter(Boolean).join(" · ");
+                return (
+                  <li key={`${job.company}-${job.period}`} className="relative">
+                    <span
+                      className="absolute left-0 top-2 h-4 w-4 -translate-x-[calc(3rem+1px+0.5rem)] rounded-full border-[3px] border-cream bg-gradient-to-br from-sea to-sea-light shadow-sm ring-4 ring-sea/15 dark:border-midnight-soft dark:from-accent dark:to-sea dark:ring-accent/20 sm:-translate-x-[calc(4rem+1px+0.5rem)]"
+                      aria-hidden
+                    />
+                    <div className="flex flex-col gap-1 sm:flex-row sm:flex-wrap sm:items-baseline sm:justify-between sm:gap-x-6">
+                      <h3 className="font-display text-xl font-semibold text-midnight dark:text-cream md:text-2xl">
+                        {job.companyUrl ? (
+                          <a
+                            href={job.companyUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="underline decoration-sea/35 decoration-2 underline-offset-[5px] transition hover:decoration-sea hover:text-sea dark:decoration-accent/40 dark:hover:decoration-accent dark:hover:text-accent"
+                          >
+                            {job.company}
+                          </a>
+                        ) : (
+                          job.company
+                        )}
+                      </h3>
+                      <div className="text-right sm:text-left">
+                        <p className="text-sm font-semibold text-sea dark:text-accent">{job.role}</p>
+                        {job.roleTimeline ? (
+                          <p className="mt-1 text-xs font-medium text-midnight-muted dark:text-cream/55">
+                            {job.roleTimeline}
+                          </p>
+                        ) : null}
+                      </div>
+                    </div>
+                    <p className="mt-2 text-sm text-midnight-muted dark:text-cream/60">{meta}</p>
+                    <ul className="mt-5 space-y-2.5 text-[0.95rem] leading-relaxed text-midnight-muted dark:text-cream/75 md:text-base">
+                      {job.bullets.map((b) => (
+                        <li key={b} className="flex gap-3">
+                          <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" aria-hidden />
+                          <span>{b}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                );
+              })}
+            </ol>
+          </div>
+        </section>
+
+        {/* Recent projects */}
+        <section
+          id="projects"
+          className="scroll-mt-24 border-t border-line bg-cream-deep/40 px-4 py-20 dark:border-white/10 dark:bg-midnight-soft/25 sm:scroll-mt-28 sm:px-5 sm:py-24 md:px-8 md:py-32"
+        >
+          <div className="mx-auto max-w-6xl">
+            <SectionLabel>Portfolio</SectionLabel>
+            <h2 className="mt-4 font-display text-display-sm font-medium text-midnight dark:text-cream md:text-display">
+              Recent projects
             </h2>
             <p className="mt-5 max-w-2xl text-midnight-muted dark:text-cream/70 md:text-lg">
               Short previews below — use Explore more to open the full write-up: stack, delivery, and how I worked with the team.

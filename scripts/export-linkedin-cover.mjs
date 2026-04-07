@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /**
- * Renders public/linkedin-cover.html at 1584×396 and writes public/linkedin-cover.png
+ * Renders public/linkedin-cover.html and writes public/linkedin-cover.png.
+ * Uses logical viewport 1584×396 at device scale 2 → 3168×792 PNG (sharp on HiDPI / LinkedIn).
  * Requires Google Chrome or Chromium. Set CHROME_PATH to override.
  */
 import { spawnSync } from "node:child_process";
@@ -42,7 +43,7 @@ const args = [
   "--headless=new",
   "--disable-gpu",
   "--hide-scrollbars",
-  "--force-device-scale-factor=1",
+  "--force-device-scale-factor=2",
   "--window-size=1584,396",
   `--screenshot=${outPath}`,
   fileUrl,

@@ -6,6 +6,11 @@ const externalLinks = {
   umerpayRepo: "https://github.com/MuhammadUmerSheraz/UmerPay",
 } as const;
 
+/** Case studies on the WordPress portfolio site (same targets linked from the Engineering Team Lead PDF). */
+function wpPortfolio(slug: string) {
+  return `https://muhammadumersheraz.com/?portfolio=${slug}`;
+}
+
 export type FeaturedProjectPanel = "lottery" | "bank";
 
 export type FeaturedBulletSection = {
@@ -35,6 +40,20 @@ export type DetailBarChartBlock = {
   /** Shown next to values, e.g. "%" or "K USD/mo". */
   unit?: string;
   items: readonly { label: string; value: number; max?: number }[];
+};
+
+/** One role on the homepage work-experience timeline. */
+export type WorkExperience = {
+  company: string;
+  /** Optional link shown next to the company name. */
+  companyUrl?: string;
+  role: string;
+  /** e.g. promotion path: "CTO (2023 – 2025) · CEO (2026 – present)" */
+  roleTimeline?: string;
+  period: string;
+  mode?: string;
+  location?: string;
+  bullets: readonly string[];
 };
 
 export type FeaturedProject = {
@@ -201,6 +220,61 @@ export const site = {
       ],
     },
   ],
+  experience: [
+    {
+      company: "Zeliee",
+      companyUrl: "https://zeliee.com/en/",
+      role: "CEO & Co-Founder",
+      roleTimeline: "CTO (2023 – 2025) · CEO & Co-Founder (2026 – present)",
+      period: "2023 – Present",
+      mode: "Remote · multi-region",
+      location: "Morocco · India · Singapore · Hungary",
+      bullets: [
+        "Lead technology and delivery for an IT & digital marketing agency offering web & mobile development, ecommerce, online advertising, influencer and 360° marketing, brand identity, and broader IT solutions (see zeliee.com).",
+        "As CTO: owned technical direction, vendor and cloud choices, security posture, and engineering quality across client projects; mentored developers and aligned delivery with commercial deadlines.",
+        "As CEO & Co-Founder: shape company strategy, partnerships, and P&L-aware scoping; grow distributed operations across multiple countries while keeping execution standards high.",
+        "Skills in practice: solution architecture, full-stack and mobile delivery oversight, DevOps & CI/CD mindset, stakeholder management, hiring and performance, and translating marketing-led briefs into shippable products.",
+      ],
+    },
+    {
+      company: "Aion Digital",
+      role: "Senior Team Lead",
+      mode: "Hybrid",
+      location: "UAE",
+      period: "Aug 2020 – Present",
+      bullets: [
+        "Led Android development teams to deliver banking applications including Friendi Pay and Vision Bank.",
+        "Collaborated with product managers, designers, and stakeholders for feature planning and implementation.",
+        "Conducted code reviews and mentored junior developers to maintain coding standards.",
+        "Implemented MVVM and Clean Architecture to improve app stability and scalability.",
+        "Introduced automated testing strategies and CI/CD pipelines.",
+      ],
+    },
+    {
+      company: "Linez Technology",
+      role: "Software Engineer",
+      mode: "Onsite",
+      location: "",
+      period: "Aug 2018 – Aug 2020",
+      bullets: [
+        "Spearheaded Android app development from design to deployment.",
+        "Led UI/UX enhancements and bug fixing to improve user satisfaction.",
+        "Leveraged Jira, GitHub, Figma, and AWS for streamlined team collaboration.",
+      ],
+    },
+    {
+      company: "Sprint Solution",
+      role: "Android Developer",
+      mode: "Hybrid",
+      location: "",
+      period: "Aug 2016 – Oct 2018",
+      bullets: [
+        "Developed and maintained Android applications across multiple client domains.",
+        "Focused on clean code, modular design, and agile delivery.",
+        "Managed deployments and implemented analytics for user behavior tracking.",
+      ],
+    },
+  ] satisfies readonly WorkExperience[],
   featuredProjects: [
     {
       slug: "big-lottery-gulf",
@@ -530,6 +604,446 @@ export const site = {
             { label: "API, schema & database", value: 30 },
             { label: "Auth, OTP & security patterns", value: 22 },
             { label: "Admin, PWA & polish", value: 13 },
+          ],
+        },
+      ],
+    },
+    {
+      slug: "friendi-pay",
+      name: "Friendi Pay",
+      summary:
+        "Mobile wallet for Oman — secure onboarding, balances, and payments across Android and iOS. I led cross-platform delivery on React Native with Node and payment integrations.",
+      detailIntro: [
+        "Friendi Pay is a consumer fintech experience built for the Oman market: wallet-style balances, money movement, and flows that must feel credible on both major mobile platforms from a shared codebase.",
+        "As Cross-Platform Team Lead, I owned coordination between mobile engineers, backend contracts, and release readiness — with a strong focus on authentication, payment edge cases, and clear handoffs to QA and stakeholders.",
+      ],
+      bulletSections: [
+        {
+          title: "What we shipped",
+          items: [
+            "End-to-end mobile wallet journeys on Android and iOS from a single React Native codebase",
+            "Backend integrations for auth sessions, account state, and payment-related operations",
+            "Hardening around retries, timeouts, and user-visible errors when networks or providers misbehave",
+          ],
+        },
+        {
+          title: "My role",
+          items: [
+            "Technical leadership for the cross-platform squad: scope, sequencing, and definition of done",
+            "Code review emphasis on navigation, state, and secure handling of tokens and sensitive UI",
+            "Alignment with product and QA for pilots, regression passes, and production monitoring expectations",
+          ],
+        },
+        {
+          title: "Stack & integrations",
+          items: [
+            "React Native for shared product UI and platform-specific polish where required",
+            "Node.js services behind REST-style APIs consumed by the apps",
+            "Firebase where the architecture used real-time or push-style capabilities",
+            "Stripe and OAuth-oriented patterns for payments and delegated authentication",
+          ],
+        },
+      ],
+      stack: ["React Native", "Node.js", "Firebase", "Stripe", "OAuth2", "REST APIs", "Android", "iOS"],
+      homeStackLimit: 6,
+      panelInitials: "FP",
+      panelBlurb: "Oman · wallet · React Native · payments",
+      panelVariant: "bank",
+      showVisualPanel: false,
+      primaryCta: { label: "Case study", href: wpPortfolio("friendi-pay-oman") },
+      detailTables: [
+        {
+          title: "At a glance",
+          columns: ["Topic", "Detail"],
+          rows: [
+            ["Context", "Consumer fintech / mobile wallet — Oman"],
+            ["Role", "Cross-Platform Team Lead"],
+            ["Platforms", "Android & iOS (shared codebase)"],
+          ],
+        },
+      ],
+    },
+    {
+      slug: "ghazi-restaurant",
+      name: "Ghazi Restaurant",
+      summary:
+        "Real-time food ordering web platform — chat, maps, dashboards, and JWT-secured flows. I led full-stack delivery with React, NestJS, MongoDB, and Firebase notifications.",
+      detailIntro: [
+        "Ghazi Restaurant is an online ordering product: customers place orders in real time, operators see activity in dashboards, and location-aware pieces (maps, service areas) sit in the loop.",
+        "I acted as Full Stack Lead — bridging React frontends, NestJS APIs, MongoDB persistence, and Firebase-powered notifications so the experience stayed responsive under load.",
+      ],
+      bulletSections: [
+        {
+          title: "Product surface",
+          items: [
+            "Customer-facing ordering flows with real-time feedback and order tracking patterns",
+            "Operator dashboards for monitoring demand, statuses, and operational metrics",
+            "Maps and location integrations to support delivery-style journeys",
+          ],
+        },
+        {
+          title: "Engineering",
+          items: [
+            "JWT-based authentication and role-aware routes across web clients",
+            "Push-style notifications through Firebase for order lifecycle events",
+            "Responsive UI with Tailwind CSS and SCSS, tuned for phone and desktop",
+          ],
+        },
+        {
+          title: "My role",
+          items: [
+            "Owned technical direction across frontend, API, and data model iterations",
+            "Partnered on API contracts, pagination, and indexing assumptions for MongoDB workloads",
+            "Kept delivery incremental: shippable slices instead of a single big-bang release",
+          ],
+        },
+      ],
+      stack: ["React", "NestJS", "MongoDB", "Firebase", "Tailwind CSS", "SCSS", "Google Maps API", "JWT"],
+      homeStackLimit: 6,
+      panelInitials: "GR",
+      panelBlurb: "Food ordering · real-time · maps · dashboards",
+      panelVariant: "lottery",
+      showVisualPanel: false,
+      primaryCta: {
+        label: "Case study",
+        href: wpPortfolio("ghazi-restaurant-online-food-ordering-platform"),
+      },
+      detailTables: [
+        {
+          title: "At a glance",
+          columns: ["Topic", "Detail"],
+          rows: [
+            ["Domain", "Online food ordering & operations"],
+            ["Role", "Full Stack Lead"],
+            ["Data", "MongoDB with NestJS APIs"],
+          ],
+        },
+      ],
+    },
+    {
+      slug: "vision-bank",
+      name: "Vision Bank",
+      summary:
+        "Digital banking for Abu Dhabi — secure onboarding, KYC-oriented journeys, and stakeholder alignment. I led the mobile engineering track on native and hybrid surfaces.",
+      detailIntro: [
+        "Vision Bank is a regulated-leaning digital banking initiative: customers move through onboarding, verification, and day-to-day banking flows with expectations around trust, clarity, and auditability.",
+        "As Mobile Team Lead, I focused on delivery discipline across Android and iOS, coordination with backend and compliance-minded stakeholders, and keeping authentication and data-handling patterns consistent.",
+      ],
+      bulletSections: [
+        {
+          title: "Scope",
+          items: [
+            "Mobile apps covering onboarding, account management, and core banking-style journeys",
+            "Close collaboration with product on KYC/verification steps and edge cases",
+            "Integration with backend services and Firebase-backed capabilities where the architecture required",
+          ],
+        },
+        {
+          title: "Leadership",
+          items: [
+            "Sprint-level planning with designers, QA, and backend owners",
+            "Code review culture around security-sensitive screens and error states",
+            "Risk-aware release planning for features that touch identity and money movement",
+          ],
+        },
+        {
+          title: "Technology",
+          items: [
+            "Native Android and iOS engineering (Java/Kotlin and Swift ecosystems as applicable)",
+            "Node.js backends and REST contracts consumed by mobile clients",
+            "OAuth2-style flows and secure storage assumptions reviewed with the wider team",
+          ],
+        },
+      ],
+      stack: ["Android", "iOS", "Node.js", "Firebase", "REST APIs", "OAuth2", "Mobile security"],
+      homeStackLimit: 6,
+      panelInitials: "VB",
+      panelBlurb: "Abu Dhabi · digital banking · KYC · mobile lead",
+      panelVariant: "bank",
+      showVisualPanel: false,
+      primaryCta: { label: "Case study", href: wpPortfolio("vision-bank-abu-dhabi") },
+      detailTables: [
+        {
+          title: "At a glance",
+          columns: ["Topic", "Detail"],
+          rows: [
+            ["Region", "Abu Dhabi, UAE"],
+            ["Role", "Mobile Team Lead"],
+            ["Focus", "Onboarding, KYC-style flows, secure banking UX"],
+          ],
+        },
+      ],
+    },
+    {
+      slug: "kfh-online",
+      name: "KFH Online",
+      summary:
+        "Retail banking mobile experience for Kuwait — core banking hooks, gateways, and hardened login. I contributed as a mobile engineer across Android and iOS integrations.",
+      detailIntro: [
+        "KFH Online extends traditional retail banking to mobile: customers authenticate, view balances, and execute flows that depend on core systems and external payment rails.",
+        "I worked as a Mobile Developer — implementing integrations, encryption-minded transport, and biometric login patterns while coordinating with backend and security expectations.",
+      ],
+      bulletSections: [
+        {
+          title: "Delivery focus",
+          items: [
+            "Integration between mobile clients and core banking services with clear API contracts",
+            "Third-party payment gateway paths with attention to failure modes and reconciliation",
+            "Biometric login and device-bound trust patterns where product requirements allowed",
+          ],
+        },
+        {
+          title: "Engineering practices",
+          items: [
+            "Encrypted communications and cautious logging on sensitive surfaces",
+            "Regression discipline around auth, session refresh, and deep links",
+            "Collaboration with QA on device matrices and OS upgrades",
+          ],
+        },
+      ],
+      stack: ["Android", "iOS", "Java", "Kotlin", "API Gateway", "Firebase Auth", "REST APIs"],
+      homeStackLimit: 6,
+      panelInitials: "KF",
+      panelBlurb: "Kuwait · retail banking · integrations",
+      panelVariant: "bank",
+      showVisualPanel: false,
+      primaryCta: { label: "Case study", href: wpPortfolio("kfh-retail") },
+      detailTables: [
+        {
+          title: "At a glance",
+          columns: ["Topic", "Detail"],
+          rows: [
+            ["Region", "Kuwait"],
+            ["Role", "Mobile Developer"],
+            ["Theme", "Core banking & gateway integrations"],
+          ],
+        },
+      ],
+    },
+    {
+      slug: "cuddloo",
+      name: "Cuddloo",
+      summary:
+        "Multi-platform dating product for Morocco — Android, iOS, web, backend, design, and DevOps under one roadmap. I led the project across React Native, NestJS, MongoDB, and AWS.",
+      detailIntro: [
+        "Cuddloo is a full product vertical: mobile apps, web surfaces, APIs, and the operational glue (CI/CD, environments) needed to ship continuously without losing quality.",
+        "As Project Lead, I coordinated designers, mobile and web engineers, and backend work — keeping UX consistent while NestJS services and MongoDB carried profiles, matching, and real-time-style features.",
+      ],
+      bulletSections: [
+        {
+          title: "Product breadth",
+          items: [
+            "Cross-platform mobile with React Native and complementary web experiences",
+            "Backend APIs with NestJS on MongoDB for profiles, chat-style features, and moderation hooks",
+            "Design handoffs via Figma with component-level alignment to implementation",
+          ],
+        },
+        {
+          title: "Platform & reliability",
+          items: [
+            "AWS for hosting and scalable primitives as the user base grew",
+            "GitLab CI/CD pipelines for repeatable builds, tests, and deploys",
+            "Firebase capabilities where push and real-time patterns helped the product",
+          ],
+        },
+        {
+          title: "Leadership",
+          items: [
+            "Roadmap negotiation with stakeholders: scope cuts vs. date risk",
+            "Mentoring and unblocking engineers across stacks",
+            "Incident-style follow-ups when production behaviour diverged from expectations",
+          ],
+        },
+      ],
+      stack: [
+        "React Native",
+        "Node.js",
+        "NestJS",
+        "MongoDB",
+        "Firebase",
+        "AWS",
+        "Figma",
+        "GitLab CI/CD",
+      ],
+      homeStackLimit: 6,
+      panelInitials: "CU",
+      panelBlurb: "Morocco · dating · RN · NestJS · AWS",
+      panelVariant: "lottery",
+      showVisualPanel: false,
+      primaryCta: { label: "Case study", href: wpPortfolio("cuddloo-find-your-love") },
+      detailTables: [
+        {
+          title: "At a glance",
+          columns: ["Topic", "Detail"],
+          rows: [
+            ["Region", "Morocco"],
+            ["Role", "Project Lead"],
+            ["Footprint", "Mobile + web + backend + DevOps"],
+          ],
+        },
+      ],
+    },
+    {
+      slug: "sms-pin-verify",
+      name: "SMS Pin Verify",
+      summary:
+        "OTP delivery and verification product — virtual numbers, low-latency checks, and crypto-style payment options. Full-stack Node, MongoDB, WebSockets, and Stripe.",
+      detailIntro: [
+        "SMS Pin Verify targets developers and power users who need reliable OTP delivery: renting virtual numbers, verifying codes quickly, and handling payments without friction.",
+        "I built full-stack features across Node.js services, MongoDB persistence, WebSockets for live updates, and Stripe alongside blockchain APIs where the product required alternative settlement paths.",
+      ],
+      bulletSections: [
+        {
+          title: "Capabilities",
+          items: [
+            "OTP delivery workflows with attention to latency and user-visible status",
+            "Virtual number rental flows with bookkeeping for usage and limits",
+            "WebSockets for near-real-time verification feedback in the client",
+          ],
+        },
+        {
+          title: "Payments & risk",
+          items: [
+            "Stripe integration for card flows and subscription-style billing where applicable",
+            "Blockchain API touchpoints for alternative payment or settlement experiments",
+            "Operational logging without leaking sensitive codes in plain text",
+          ],
+        },
+      ],
+      stack: ["Node.js", "MongoDB", "WebSockets", "Stripe", "REST APIs"],
+      homeStackLimit: 5,
+      panelInitials: "SV",
+      panelBlurb: "OTP · virtual numbers · WebSockets",
+      panelVariant: "bank",
+      showVisualPanel: false,
+      primaryCta: { label: "Case study", href: wpPortfolio("sms-pin-verify") },
+      detailTables: [
+        {
+          title: "At a glance",
+          columns: ["Topic", "Detail"],
+          rows: [
+            ["Product type", "OTP / verification & virtual numbers"],
+            ["Role", "Full Stack Developer"],
+            ["Realtime", "WebSockets for live status"],
+          ],
+        },
+      ],
+    },
+    {
+      slug: "fax-from-iphone",
+      name: "FAX from iPhone · Send Document",
+      summary:
+        "Mobile fax and document transmission — React Native client, Node services, iFax and Stripe integrations, and AWS for durable storage. I owned delivery end to end as project lead.",
+      detailIntro: [
+        "This product lets users send documents from their phone through fax-capable backends: upload, preview, pay where required, and track submission — all while staying App Store friendly.",
+        "As Project Lead, I coordinated mobile UX, Node.js services, third-party fax APIs (iFax), Stripe billing, AWS S3/EC2 usage, and Firebase pieces for auth and operational telemetry.",
+      ],
+      bulletSections: [
+        {
+          title: "User journey",
+          items: [
+            "Document pickers, previews, and confirmation steps tuned for small screens",
+            "Payment flows for one-off and repeat senders",
+            "Status tracking when upstream fax providers return async outcomes",
+          ],
+        },
+        {
+          title: "Architecture",
+          items: [
+            "React Native app shell with native modules only where necessary",
+            "Node.js orchestration between storage, billing, and fax vendor APIs",
+            "AWS S3 for object durability; EC2 for service hosting patterns used on the project",
+          ],
+        },
+        {
+          title: "Leadership",
+          items: [
+            "Vendor evaluation for fax APIs and cost controls",
+            "Release trains with mobile store policies in mind",
+            "Post-release support when provider behaviour or document formats changed",
+          ],
+        },
+      ],
+      stack: ["React Native", "Node.js", "Stripe", "AWS S3", "AWS EC2", "Firebase", "REST APIs"],
+      homeStackLimit: 6,
+      panelInitials: "FX",
+      panelBlurb: "Mobile fax · iFax · AWS · Stripe",
+      panelVariant: "lottery",
+      showVisualPanel: false,
+      primaryCta: {
+        label: "Case study",
+        href: "https://muhammadumersheraz.com/?portfolio=fax-from-iphone%e3%83%bbsend-document",
+      },
+      detailTables: [
+        {
+          title: "At a glance",
+          columns: ["Topic", "Detail"],
+          rows: [
+            ["Product", "Send documents / fax from mobile"],
+            ["Role", "Project Lead"],
+            ["Vendors", "iFax API · Stripe · AWS"],
+          ],
+        },
+      ],
+    },
+    {
+      slug: "tash-wash",
+      name: "Tash Wash",
+      summary:
+        "Car detailing marketplace — dual apps for customers and providers with Laravel admin, Stripe Connect, and maps. I led Android (Kotlin) and coordinated backend and payments.",
+      detailIntro: [
+        "Tash Wash connects car owners with detailing providers: booking, pricing, provider onboarding, and payouts need to work together without operational chaos.",
+        "As Technical Lead, I drove the Android experience in Kotlin, partnered on the Laravel backend and admin panel, and integrated Stripe Connect for marketplace-style money movement alongside Google Maps and Firebase.",
+      ],
+      bulletSections: [
+        {
+          title: "Two-sided product",
+          items: [
+            "Customer app for discovery, booking, and status",
+            "Provider app for jobs, availability, and earnings visibility",
+            "Admin tooling for moderation, configuration, and support tasks",
+          ],
+        },
+        {
+          title: "Payments & maps",
+          items: [
+            "Stripe Connect patterns for split payouts and onboarding providers",
+            "Google Maps for location selection, routing context, and service areas",
+            "Firebase for notifications and lightweight real-time cues where needed",
+          ],
+        },
+        {
+          title: "My role",
+          items: [
+            "Android architecture (XML/Kotlin) with an eye toward testability",
+            "API design reviews with Laravel owners for mobile-friendly payloads",
+            "Cross-functional planning with operations on edge cases (cancellations, disputes)",
+          ],
+        },
+      ],
+      stack: [
+        "Android",
+        "Kotlin",
+        "PHP",
+        "Laravel",
+        "Stripe Connect",
+        "Google Maps API",
+        "Firebase",
+      ],
+      homeStackLimit: 6,
+      panelInitials: "TW",
+      panelBlurb: "Car detailing · marketplace · Stripe Connect",
+      panelVariant: "bank",
+      showVisualPanel: false,
+      primaryCta: { label: "Case study", href: wpPortfolio("tash-wash") },
+      detailTables: [
+        {
+          title: "At a glance",
+          columns: ["Topic", "Detail"],
+          rows: [
+            ["Domain", "Car wash / detailing services"],
+            ["Role", "Technical Lead"],
+            ["Stack theme", "Android + Laravel + Connect + Maps"],
           ],
         },
       ],

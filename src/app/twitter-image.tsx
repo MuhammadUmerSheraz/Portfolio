@@ -9,6 +9,6 @@ export const alt = getOgImageAlt();
 export const size = ogImageSize;
 export const contentType = ogImageContentType;
 
-export default async function OpenGraphImage() {
+export default async function TwitterImage() {
   return createPortfolioShareImageResponse();
 }

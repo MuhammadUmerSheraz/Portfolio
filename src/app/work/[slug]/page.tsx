@@ -11,6 +11,8 @@ import {
   type FeaturedBulletSection,
   type FeaturedProject,
 } from "@/content/site";
+import { getSiteUrl } from "@/lib/site-url";
+
 type PageProps = { params: { slug: string } };
 
 function workMetaDescription(project: FeaturedProject): string {
@@ -34,10 +36,13 @@ export function generateMetadata({ params }: PageProps): Metadata {
   const description = workMetaDescription(project);
   const path = `/work/${params.slug}`;
   const pageTitle = `${project.name} — ${site.displayName}`;
+  const origin = getSiteUrl().replace(/\/$/, "");
+  const pageUrl = `${origin}${path}`;
+  const fallbackOg = `${origin}/opengraph-image`;
   const ogImages = project.panelScreenshot
     ? [
         {
-          url: project.panelScreenshot.src,
+          url: `${origin}${project.panelScreenshot.src}`,
           width: 1200,
           height: 630,
           alt: project.panelScreenshot.alt,
@@ -45,9 +50,10 @@ export function generateMetadata({ params }: PageProps): Metadata {
       ]
     : [
         {
-          url: "/opengraph-image",
+          url: fallbackOg,
           width: 1200,
           height: 630,
+          type: "image/png",
           alt: pageTitle,
         },
       ];
@@ -59,7 +65,7 @@ export function generateMetadata({ params }: PageProps): Metadata {
     alternates: { canonical: path },
     openGraph: {
       type: "article",
-      url: path,
+      url: pageUrl,
       siteName: `${site.displayName} — Portfolio`,
       title: pageTitle,
       description,
@@ -69,9 +75,7 @@ export function generateMetadata({ params }: PageProps): Metadata {
       card: "summary_large_image",
       title: pageTitle,
       description,
-      images: project.panelScreenshot
-        ? [project.panelScreenshot.src]
-        : ["/opengraph-image"],
+      images: project.panelScreenshot ? [`${origin}${project.panelScreenshot.src}`] : [fallbackOg],
     },
     robots: {
       index: true,
@@ -120,10 +124,10 @@ export default function WorkProjectPage({ params }: PageProps) {
       <main className="min-h-dvh min-w-0 px-4 pb-24 pt-[calc(5.5rem+env(safe-area-inset-top))] sm:px-5 sm:pb-28 sm:pt-28 md:px-8 md:pb-36 md:pt-32">
         <article className="mx-auto max-w-3xl">
           <Link
-            href="/#work"
+            href="/#projects"
             className="inline-flex text-sm font-medium text-midnight-muted underline decoration-accent/40 underline-offset-4 transition hover:text-sea dark:text-cream/65 dark:hover:text-accent"
           >
-            ← Featured work
+            ← Recent projects
           </Link>
 
           <h1 className="mt-8 font-display text-[1.75rem] font-semibold leading-tight tracking-tight text-midnight dark:text-cream sm:text-[2rem] md:text-display-sm">

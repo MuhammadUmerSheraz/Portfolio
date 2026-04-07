@@ -3,7 +3,8 @@ import { getFeaturedProjectSlugs } from "@/content/site";
 import { getSiteUrl } from "@/lib/site-url";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = getSiteUrl();
+  const raw = getSiteUrl();
+  const base = raw.replace(/\/$/, "");
   const now = new Date();
   const workEntries = getFeaturedProjectSlugs().map((slug) => ({
     url: `${base}/work/${slug}`,

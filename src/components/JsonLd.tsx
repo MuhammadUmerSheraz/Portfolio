@@ -3,7 +3,7 @@ import { getSiteUrl } from "@/lib/site-url";
 
 /** Person + WebSite structured data for rich results. */
 export function JsonLd() {
-  const base = getSiteUrl();
+  const base = getSiteUrl().replace(/\/$/, "");
   const person = {
     "@type": "Person",
     name: site.displayName,

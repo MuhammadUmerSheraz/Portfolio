@@ -19,6 +19,11 @@ const figtree = Figtree({
 });
 
 const siteUrl = getSiteUrl();
+const metadataBase = new URL(siteUrl.endsWith("/") ? siteUrl.slice(0, -1) : siteUrl);
+/** Absolute URLs — some crawlers (e.g. WhatsApp) mishandle relative `og:image` even with `metadataBase`. */
+const openGraphImageUrl = new URL("/opengraph-image", metadataBase).href;
+const twitterImageUrl = new URL("/twitter-image", metadataBase).href;
+const canonicalHomeUrl = new URL("/", metadataBase).href;
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -32,14 +37,14 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase,
   title: {
     default: `${site.displayName} — ${site.role}`,
     template: `%s — ${site.displayName}`,
   },
   description: site.seoDescription,
   applicationName: site.displayName,
-  authors: [{ name: site.displayName, url: siteUrl }],
+  authors: [{ name: site.displayName, url: canonicalHomeUrl }],
   creator: site.displayName,
   publisher: site.displayName,
   keywords: site.seoKeywords,
@@ -61,15 +66,16 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "/",
+    url: canonicalHomeUrl,
     siteName: `${site.displayName} — Portfolio`,
     title: `${site.displayName} — ${site.role}`,
     description: site.seoDescription,
     images: [
       {
-        url: "/opengraph-image",
+        url: openGraphImageUrl,
         width: 1200,
         height: 630,
+        type: "image/png",
         alt: `${site.displayName} — ${site.role}`,
       },
     ],
@@ -78,7 +84,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${site.displayName} — ${site.role}`,
     description: site.seoDescription,
-    images: ["/opengraph-image"],
+    images: [twitterImageUrl],
   },
   appleWebApp: {
     capable: true,

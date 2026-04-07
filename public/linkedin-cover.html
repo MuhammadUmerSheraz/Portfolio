@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>LinkedIn cover — Umer Sheraz (export 1584×396)</title>
+    <title>LinkedIn cover — Umer Sheraz (1584×396, export @2× for HD)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -15,15 +15,17 @@
         margin: 0;
         padding: 0;
       }
+      /* No top padding — headless screenshot uses viewport from y=0; centering used to clip the banner. */
       body {
+        margin: 0;
         min-height: 100vh;
         background: #1a1a1a;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        gap: 1rem;
-        padding: 1rem;
+        justify-content: flex-start;
+        gap: 0;
+        padding: 0;
         font-family: Figtree, system-ui, sans-serif;
       }
       /* LinkedIn recommended cover: 1584 × 396 */
@@ -39,8 +41,11 @@
         position: absolute;
         inset: 0;
         background:
-          radial-gradient(ellipse 85% 70% at 78% -15%, rgba(196, 165, 116, 0.22), transparent 55%),
-          radial-gradient(ellipse 55% 50% at 0% 55%, rgba(30, 95, 95, 0.2), transparent 52%),
+          /* Left: soft wash behind profile-photo zone */
+          radial-gradient(ellipse 70% 75% at 12% 48%, rgba(196, 165, 116, 0.14), transparent 55%),
+          radial-gradient(ellipse 50% 55% at 8% 70%, rgba(30, 95, 95, 0.16), transparent 52%),
+          /* Right: depth behind copy */
+          radial-gradient(ellipse 65% 70% at 92% -10%, rgba(196, 165, 116, 0.2), transparent 52%),
           radial-gradient(ellipse 40% 60% at 100% 100%, rgba(45, 122, 122, 0.12), transparent 45%);
         pointer-events: none;
       }
@@ -56,7 +61,8 @@
       }
       .arc {
         position: absolute;
-        right: -8%;
+        left: -8%;
+        right: auto;
         top: 50%;
         transform: translateY(-50%);
         width: 520px;
@@ -66,7 +72,8 @@
         pointer-events: none;
       }
       .arc2 {
-        right: 2%;
+        left: 2%;
+        right: auto;
         width: 380px;
         height: 380px;
         border-color: rgba(30, 95, 95, 0.25);
@@ -75,51 +82,59 @@
         position: relative;
         z-index: 1;
         height: 100%;
-        padding: 48px 56px;
+        width: min(900px, 60%);
+        margin-left: auto;
+        box-sizing: border-box;
+        padding: 26px 52px 30px 28px;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        max-width: 920px;
+        justify-content: flex-start;
+        align-items: flex-end;
+        text-align: right;
       }
       .name {
         font-family: Fraunces, Georgia, serif;
-        font-size: 3.35rem;
+        font-size: 2.95rem;
         font-weight: 600;
         letter-spacing: -0.03em;
         color: #fffdf9;
-        line-height: 1.05;
+        line-height: 1.06;
       }
       .name span {
         color: #c4a574;
       }
       .role {
-        margin-top: 14px;
+        margin-top: 8px;
         font-family: Figtree, sans-serif;
-        font-size: 1.35rem;
+        font-size: 1.2rem;
         font-weight: 600;
         color: #2d7a7a;
         letter-spacing: 0.02em;
+        line-height: 1.25;
       }
       .tagline {
-        margin-top: 18px;
-        font-size: 1.05rem;
+        margin-top: 10px;
+        font-size: 0.98rem;
         font-weight: 500;
-        line-height: 1.5;
+        line-height: 1.42;
         color: rgba(255, 253, 249, 0.72);
-        max-width: 38rem;
+        max-width: 36rem;
+        text-wrap: balance;
       }
       .pills {
-        margin-top: 28px;
+        margin-top: 14px;
         display: flex;
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 7px 8px;
+        justify-content: flex-end;
+        max-width: 100%;
       }
       .pill {
-        font-size: 0.8rem;
+        font-size: 0.72rem;
         font-weight: 600;
         letter-spacing: 0.04em;
         text-transform: uppercase;
-        padding: 8px 14px;
+        padding: 6px 12px;
         border-radius: 999px;
         border: 1px solid rgba(196, 165, 116, 0.35);
         color: rgba(255, 253, 249, 0.88);
@@ -134,6 +149,7 @@
         font-size: 0.85rem;
         max-width: 1584px;
         text-align: center;
+        padding: 1rem 1rem 2rem;
       }
     </style>
   </head>
@@ -162,9 +178,9 @@
       </div>
     </div>
     <p class="hint">
-      Export: use browser zoom 100% and screenshot only the dark banner above, or run
-      <code>npm run export-linkedin-cover</code> from the project root to write
-      <code>public/linkedin-cover.png</code>.
+      Export: run <code>npm run export-linkedin-cover</code> — writes a <strong>3168×792</strong> (2×) PNG to
+      <code>public/linkedin-cover.png</code> for a sharp LinkedIn upload. Or screenshot only the dark banner above
+      at 100% zoom.
     </p>
   </body>
 </html>
